@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 class Hund implements Comparable<Hund> {
     String navn;
     Kull mittKull;
@@ -77,4 +79,5 @@ abstract class Kull implements Iterable<Hund> {
     public abstract void settInn(Hund h);
 
     public abstract Iterator<Hund> iterator();
+
 }
