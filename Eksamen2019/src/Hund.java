@@ -12,15 +12,23 @@ class Hund implements Comparable<Hund> {
 
     @Override
     public int compareTo(Hund h) {
-// Oppgave 2b
+        Tidspunkt
     }
 
     public Hund mor() {
-// Oppgave 2a
+        if (mittKull.mor != null) {
+            return mittKull.mor;
+        } else {
+            return null;
+        }
     }
 
     public Hund far() {
-// Oppgave 2a
+        if (mittKull.far != null){
+            return mittKull.far;
+        } else {
+            return null;
+        }
     }
 
     public boolean erHelsosken(Hund h) {
