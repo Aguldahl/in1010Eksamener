@@ -32,7 +32,7 @@ class Hund implements Comparable<Hund> {
     }
 
     public Hund far() {
-        if (mittKull.far != null){
+        if (mittKull.far != null) {
             return mittKull.far;
         } else {
             return null;
@@ -55,7 +55,7 @@ class Hund implements Comparable<Hund> {
 
     public Hund finnEldsteKjenteOpphav() {
         if (mor() == null) {
-            return far()==null ? this : far().finnEldsteKjenteOpphav();
+            return far() == null ? this : far().finnEldsteKjenteOpphav();
         }
         if (far() == null) {
             mor().finnEldsteKjenteOpphav();

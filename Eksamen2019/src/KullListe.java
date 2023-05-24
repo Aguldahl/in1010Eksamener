@@ -20,7 +20,6 @@ public class KullListe extends Kull {
             første = h;
             return;
         }
-
         Hund denne = første;
         while (true) {
             if (denne.neste == null) {
@@ -53,7 +52,6 @@ public class KullListe extends Kull {
             return svar;
         }
     }
-
 
 
 }

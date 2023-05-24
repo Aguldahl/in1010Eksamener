@@ -33,5 +33,4 @@ class Tidspunkt implements Comparable<Tidspunkt> {
     }
 
 
-
 }
