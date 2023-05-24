@@ -19,6 +19,19 @@ class Tidspunkt implements Comparable<Tidspunkt> {
 
     @Override
     public int compareTo(Tidspunkt tidspunkt) {
-        return 0;
+        if (this.toString().equals(tidspunkt.toString())) {
+            return 0;
+        }
+        int i = 0;
+        for (int e : fullTid) {
+            if (e > tidspunkt.fullTid[i]) {
+                return 1;
+            }
+            i++;
+        }
+        return -1;
     }
+
+
+
 }
