@@ -8,12 +8,10 @@ public class BilKollektiv {
     }
 
     void lagBilPris() {
-        Bil minsteBil = null;
-        for (int i = 0; i < alleBilene.length; i++) {
-            for (int j = i + 1; j < alleBilene.length; j++) {
-                if (alleBilene[i].pris <)
-            }
+        for (Bil bil : alleBilene) {
+            leggTil(bil);
         }
+
 
     }
 
@@ -29,8 +27,14 @@ public class BilKollektiv {
                 slutt = nyBil;
                 return;
             }
-            if ()
+            if (denne.neste.pris > nyBil.pris) {
+                denne.neste.forrige = nyBil;
+                nyBil.neste = denne.neste;
+                nyBil.forrige = denne;
+                denne.neste = nyBil;
+                return;
+            }
+            denne = denne.neste;
         }
     }
-
 }
