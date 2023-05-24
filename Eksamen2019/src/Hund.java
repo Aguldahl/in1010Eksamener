@@ -12,7 +12,13 @@ class Hund implements Comparable<Hund> {
 
     @Override
     public int compareTo(Hund h) {
-        Tidspunkt
+        if (this.minFodselstid.compareTo(h.minFodselstid) > 0) {
+            return 1;
+        } else if (this.minFodselstid.compareTo(h.minFodselstid) < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
     public Hund mor() {
@@ -32,15 +38,31 @@ class Hund implements Comparable<Hund> {
     }
 
     public boolean erHelsosken(Hund h) {
-// Oppgave 2c
+        if (this.far() == h.far() && this.mor() == h.mor()) {
+            return true;
+        } else return false;
     }
 
     public boolean erHalvsosken(Hund h) {
-// Oppgave 2c
+        if (erHelsosken(h)) {
+            return false;
+        } else if (this.far() == h.far() || this.mor() == h.mor()) {
+            return true;
+        } else return false;
     }
 
     public Hund finnEldsteKjenteOpphav() {
-// Oppgave 2d
+        if (mor() == null) {
+            return far()==null ? this : far().finnEldsteKjenteOpphav();
+        }
+        if (far() == null) {
+            mor().finnEldsteKjenteOpphav();
+        }
+        Hund morsEldsteOpphav = mor().finnEldsteKjenteOpphav();
+        Hund farsEldsteOpphav = far().finnEldsteKjenteOpphav();
+        if (morsEldsteOpphav.compareTo(farsEldsteOpphav) < 0) {
+            return morsEldsteOpphav;
+        } else return farsEldsteOpphav;
     }
 }
 
