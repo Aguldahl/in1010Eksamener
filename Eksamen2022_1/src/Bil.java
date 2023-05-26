@@ -16,4 +16,14 @@ abstract public class Bil {
                 ", pris=" + pris +
                 '}';
     }
+
+    Bil finnBilR(Dialog dialog, boolean kunElektrisk) {
+        if (!kunElektrisk && dialog.svarJaEllerNei("Vil du ha denne: " + this + "?")) {
+            return this;
+        }
+        if (this.neste != null) {
+            return neste.finnBilR(dialog, kunElektrisk);
+        }
+        return null;
+    }
 }

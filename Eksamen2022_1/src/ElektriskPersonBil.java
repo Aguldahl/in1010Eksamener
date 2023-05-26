@@ -15,4 +15,15 @@ public class ElektriskPersonBil extends Bil implements Elektrisk {
     public String toString() {
         return super.toString() + "Batterikapasitet: " + batteriKapasitet;
     }
+
+    @Override
+    Bil finnBilR(Dialog dialog, boolean kunElektrisk) {
+        if (dialog.svarJaEllerNei("Vil du ha denne: " + this + "?")) {
+            return this;
+        }
+        if (neste != null) {
+            return neste.finnBilR(dialog, kunElektrisk);
+        }
+        return null;
+    }
 }

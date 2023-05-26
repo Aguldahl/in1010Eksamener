@@ -83,4 +83,14 @@ public class BilKollektiv {
             peker = peker.neste;
         }
     }
+
+    public Bil velgBilR(Dialog dialog) {
+        boolean kunElBil = dialog.svarJaEllerNei("Vil du kun ha elbil?");
+        Bil bil = start.finnBilR(dialog, kunElBil);
+        if (bil != null) {
+            taUtBil(bil);
+        }
+        return bil;
+
+    }
 }
