@@ -14,32 +14,21 @@ class Hund implements Comparable<Hund> {
 
     @Override
     public int compareTo(Hund h) {
-        if (this.minFodselstid.compareTo(h.minFodselstid) > 0) {
-            return 1;
-        } else if (this.minFodselstid.compareTo(h.minFodselstid) < 0) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return this.minFodselstid.compareTo(h.minFodselstid);
     }
 
     public Hund mor() {
-        if (mittKull.mor != null) {
-            return mittKull.mor;
-        } else {
-            return null;
-        }
+        return mittKull.mor;
     }
 
     public Hund far() {
-        if (mittKull.far != null) {
-            return mittKull.far;
-        } else {
-            return null;
-        }
+        return mittKull.far;
     }
 
     public boolean erHelsosken(Hund h) {
+        if (this.far() == null && this.mor() == null && h.mor() == null && h.far() == null) {
+            return false;
+        }
         if (this.far() == h.far() && this.mor() == h.mor()) {
             return true;
         } else return false;
@@ -62,7 +51,7 @@ class Hund implements Comparable<Hund> {
         }
         Hund morsEldsteOpphav = mor().finnEldsteKjenteOpphav();
         Hund farsEldsteOpphav = far().finnEldsteKjenteOpphav();
-        if (morsEldsteOpphav.compareTo(farsEldsteOpphav) < 0) {
+        if (morsEldsteOpphav.compareTo(farsEldsteOpphav) > 0) {
             return morsEldsteOpphav;
         } else return farsEldsteOpphav;
     }

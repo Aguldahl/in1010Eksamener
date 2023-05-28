@@ -11,23 +11,29 @@ public class KullListe extends Kull {
 
     @Override
     public void settInn(Hund h) {
+        Hund denne = første;
+
         if (første == null) {
             første = h;
             return;
         }
-        if (h.compareTo(første) > 0) {
+
+        if (h.compareTo(første) < 0) {
             h.neste = første;
             første = h;
             return;
         }
-        Hund denne = første;
+
         while (true) {
             if (denne.neste == null) {
                 denne.neste = h;
-            } else if (h.compareTo(denne.neste) > 0) {
-                h.neste = denne.neste.neste;
+                break;
+            } else if (h.compareTo(denne.neste) < 0) {
+                h.neste = denne.neste;
                 denne.neste = h;
-                return;
+                break;
+            } else {
+                denne = denne.neste;
             }
         }
     }
@@ -38,8 +44,8 @@ public class KullListe extends Kull {
     }
 
     class HundeIterator implements Iterator<Hund> {
-        private Hund denne;
 
+        private Hund denne = første;
         @Override
         public boolean hasNext() {
             return denne != null;

@@ -9,7 +9,7 @@ public class PrioKø {
             return;
         }
         Node pointer = start;
-        while (true) {
+        while (true) {  //
             if (pointer.neste == null) {
                 pointer.neste = nyNode;
                 slutt = nyNode;
@@ -18,7 +18,9 @@ public class PrioKø {
             if (pointer.neste.data >= nyNode.data) {
                 nyNode.neste = pointer.neste;
                 pointer.neste = nyNode;
+                return;
             }
+            pointer = nyNode.neste;
         }
     }
 
@@ -28,7 +30,7 @@ public class PrioKø {
             return;
         }
         Node pointer = start;
-        while (pointer.neste != null && pointer.neste.data < 0) {
+        while (pointer.neste != null && pointer.neste.data > nyNode.data) {
             pointer = pointer.neste;
         }
         if (pointer.neste == null) {
