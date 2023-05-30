@@ -1,5 +1,6 @@
-public class PrioKø {
+import java.util.Iterator;
 
+public class PrioKøIterable implements Iterable {
     // Dette er enkelt listede prioritetskøer.
 
     Node start;
@@ -58,7 +59,6 @@ public class PrioKø {
             slutt = nyNode;
             return;
         }
-
         Node pointer = start;
         while (true) {
             if (pointer == slutt) {
@@ -79,4 +79,30 @@ public class PrioKø {
             }
         }
     }
+
+    @Override
+    public Iterator iterator() {
+        return new ListeIterator();
+    }
+
+    // Iteratoren implementerer interfacet Iterator, listen/beholderen implementerer Iterable.
+    public class ListeIterator implements Iterator {
+
+        Node pointer = start;
+
+
+        @Override
+        public Integer next() {
+            int data = pointer.data;
+            pointer = pointer.neste;
+            return data;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return pointer != null;
+        }
+
+    }
+
 }
