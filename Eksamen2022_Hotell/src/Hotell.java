@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class Hotell implements Iterable {
+public class Hotell implements Iterable<Rom> {
 
     final int MAX_ANT_SENGEPLASSER = 8;
     final int ANTALL_ETASJER;
@@ -71,8 +71,8 @@ public class Hotell implements Iterable {
         }
     }
 
-    int[] ledigeRom() {
-    }
+//    int[] ledigeRom() {
+//    }
 
     @Override
     public Iterator iterator() {
@@ -80,7 +80,7 @@ public class Hotell implements Iterable {
     }
 
 
-    class HotellIterator implements Iterator {
+    class HotellIterator implements Iterator<Rom> {
         int etasje = 0;
         Rom denne = forsteRomEtasje[0];
 
