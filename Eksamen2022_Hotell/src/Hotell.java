@@ -1,12 +1,19 @@
-public class Hotell {
+import java.util.Iterator;
+
+public class Hotell implements Iterable {
 
     final int MAX_ANT_SENGEPLASSER = 8;
+    final int ANTALL_ETASJER;
     Rom forsteRom = null;
     Reservasjon forsteR = null;
     Reservasjon sisteR = null;
+    Rom[] forsteRomEtasje;
 
-    void tildelRom(String navn) {
+    Hotell(int antallEtasjer) {
+        ANTALL_ETASJER = antallEtasjer;
+        forsteRomEtasje = new Rom[ANTALL_ETASJER + 1];
     }
+
 
     Rom finnRom(int antSeng, boolean kjøkken) {
         Rom pointer = forsteRom;
@@ -35,14 +42,13 @@ public class Hotell {
         reservasjon.nesteR = reservasjon.forrigeR = null;
     }
 
-    void tilDelRom(String navn) {
+    void tildelRom(String navn) {
         Reservasjon pointer = forsteR;
         Gjest reserverendeGjest;
         while (true) {
             if (pointer == null) {
                 throw new IngenReservasjon("Du har ingen reservasjon her.");
             }
-
             if (pointer.reserverendeGjest.navn.equals(navn)) {
                 reserverendeGjest = pointer.reserverendeGjest;
                 taUtRes(pointer);
@@ -57,11 +63,41 @@ public class Hotell {
                 funnetRom = true;
                 riktigRom = finnRom(pointer.ønsketSengePlass, pointer.ønskerKjøkken);
                 reserverendeGjest.rom = riktigRom;
-            } else if (sengeplasser < MAX_ANT_SENGEPLASSER){
+            } else if (sengeplasser < MAX_ANT_SENGEPLASSER) {
                 sengeplasser++;
             } else {
                 throw new IngenLedigeRom("Det er ingen ledige rom for deg");
             }
+        }
+    }
+
+    int[] ledigeRom() {
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new HotellIterator();
+    }
+
+
+    class HotellIterator implements Iterator {
+        int etasje = 0;
+        Rom denne = forsteRomEtasje[0];
+
+        @Override
+        public Rom next() {
+            Rom svar = denne;
+            denne = denne.neste;
+            while (denne == null && etasje <= ANTALL_ETASJER) {
+                etasje++;
+                denne = forsteRomEtasje[etasje];
+            }
+            return svar;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return etasje <= ANTALL_ETASJER;
         }
     }
 }
